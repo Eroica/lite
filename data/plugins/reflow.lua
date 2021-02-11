@@ -40,8 +40,10 @@ command.add("core.docview", {
       -- strip all line prefixes and trailing whitespace
       text = text:sub(#prefix1+1, -#trailing - 1):gsub("\n" .. prefix_set, "\n")
 
+      -- if there are tabs in prefix1, line_limit must be reduced by the indent_size for every tab
+      local _, tab_count = prefix1:gsub("\t", "")
+      local line_limit = config.line_limit - #prefix1 - tab_count * config.indent_size  + tab_count
       -- split into blocks, wordwrap and join
-      local line_limit = config.line_limit - #prefix1
       local blocks = {}
       text = text:gsub("\n\n", "\0")
       for block in text:gmatch("%Z+") do
