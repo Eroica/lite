@@ -27,7 +27,7 @@ command.add("core.docview", {
   ["reflow:reflow"] = function()
     local doc = core.active_view.doc
     doc:replace(function(text)
-      local prefix_set = "[^%w\n%[%](){}`'\"]*"
+      local prefix_set = "[^%w\n%[%](){}<>`'\"]*"
 
       -- get line prefix and trailing whitespace
       local prefix1 = text:match("^\n*" .. prefix_set)
