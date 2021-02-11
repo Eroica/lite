@@ -379,6 +379,14 @@ static int f_fuzzy_match(lua_State *L) {
 }
 
 
+static int f_set_window_size(lua_State *L) {
+  int width = luaL_checknumber(L, 1);
+  int height = luaL_checknumber(L, 2);
+  SDL_SetWindowSize(window, width, height);
+  return 0;
+}
+
+
 static const luaL_Reg lib[] = {
   { "poll_event",          f_poll_event          },
   { "wait_event",          f_wait_event          },
@@ -397,6 +405,7 @@ static const luaL_Reg lib[] = {
   { "sleep",               f_sleep               },
   { "exec",                f_exec                },
   { "fuzzy_match",         f_fuzzy_match         },
+  { "set_window_size",     f_set_window_size     },
   { NULL, NULL }
 };
 
