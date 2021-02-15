@@ -404,6 +404,12 @@ static int f_set_window_size(lua_State *L) {
 }
 
 
+static int f_center_window(lua_State *L) {
+  SDL_SetWindowPosition(window, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
+  return 0;
+}
+
+
 static const luaL_Reg lib[] = {
   { "poll_event",          f_poll_event          },
   { "wait_event",          f_wait_event          },
@@ -424,6 +430,7 @@ static const luaL_Reg lib[] = {
   { "fuzzy_match",         f_fuzzy_match         },
   { "set_textinput_pos",   f_set_textinput_pos   },
   { "set_window_size",     f_set_window_size     },
+  { "center_window",       f_center_window       },
   { NULL, NULL }
 };
 
